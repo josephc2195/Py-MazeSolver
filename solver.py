@@ -1,5 +1,6 @@
 from maze import Maze
 from runner import Runner
+import re
 import sys
 
 saveFile = "completed.txt"
@@ -46,13 +47,19 @@ if runner.completed:
 	print(runner.completed)
 
 	x = runner.build_path()
+	runner.view_completed()
 	with open(saveFile, "w") as file:
-		file.write("\n Origional maze: ")
+		file.write("Origional maze: \n")
 		for i in maze.layout:
 			for j in i:
 				file.write(j)
 			file.write("\n")
-		file.write("\n Solved maze: ")
+		file.write("\n Solved maze: \n")
+		for i in runner.mapped_maze:
+			for j in i:
+				file.write(j)
+			file.write("\n")
+		file.write("\n")
 
 else:
 	print(runner.completed)
